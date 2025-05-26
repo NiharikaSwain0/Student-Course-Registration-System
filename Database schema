@@ -1,0 +1,38 @@
+1. students
+CREATE TABLE students (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    department VARCHAR(50)
+);
+2. courses
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(100),
+    credits INT
+);
+3. registrations
+CREATE TABLE registrations (
+    reg_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT,
+    course_id INT,
+    reg_date DATE,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+4. admins (optional but good for login panel)
+CREATE TABLE admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(100)
+);
+🔗 ER Diagram Explanation (Text Version)
+[Students]──< registers >──[Courses]
+     ↑                         ↑
+     └── student_id        └── course_id
+
+[Registrations]
+- Connects students to courses
+- Includes reg_date
+
+[Admins] (For login control, optional UI)
