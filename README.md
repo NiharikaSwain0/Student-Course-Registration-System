@@ -1,79 +1,49 @@
 # 🎓 Student Course Registration System
 
-A Java-based GUI application designed to simplify the course registration process for students at an academic institution. This system streamlines course enrollment by offering a user-friendly interface for data entry, course selection, and tracking of registrations.
+A Java-based GUI application that allows students to log in and register for courses. Built using **Swing for GUI**, **JDBC for database connectivity**, and follows a **modular MVC structure**.
 
 ---
 
-## 🧠 Project Objective
+## 📌 Project Objective
 
-To develop a GUI-based application that allows students to:
+To build a functional course registration system where:
+- Students log in using credentials.
+- Can register for a course.
+- Data is stored securely in a MySQL database.
 
-- Log in securely
-- View and browse available courses
-- Register for courses in real-time
-- Provide instant feedback upon registration
-- Allow admins to manage course offerings and view registration statistics
+This project is designed to fulfill all **Review 2 Evaluation Criteria** of the academic mini project.
+
+---
+
+## ✅ Features Implemented
+
+- 🧑‍💻 **Login System** using username & password
+- 📝 **Course Registration** form with validation
+- 🔗 **JDBC integration** for real-time database operations
+- ⚙️ **Exception Handling** with error messages
+- 🧠 **Modular Architecture** (DAO + Model + GUI)
+- 📋 **Form Input Validation**
 
 ---
 
 ## 🛠️ Technologies Used
 
-- **Java** (Swing/JavaFX for GUI)
-- **MySQL** (Backend database)
-- **JDBC** (Java Database Connectivity)
-- **DAO Pattern** (Data Access Layer)
-- **NetBeans** or IntelliJ (Recommended IDEs)
+| Component       | Tech Used            |
+|----------------|----------------------|
+| Language        | Java                 |
+| GUI             | Swing (JFrame, JTextField, etc.) |
+| DB Connectivity | JDBC                 |
+| Database        | MySQL                |
 
 ---
 
-## 🧩 Project Modules
 
-### 👤 Student Side
-1. **Login Screen** – Secure student authentication  
-2. **Course Browser** – List of all available courses  
-3. **Registration** – Select and enroll in courses  
-4. **Feedback System** – Real-time success/error messages  
 
-### 🛡️ Admin Panel
-- Add/edit/delete courses
-- View registered students per course
-- Export registration data (optional)
+## 🏃 How to Run
+1. Clone repo
+2. Setup MySQL using `Database.sql`
+3. Update DB credentials in `Connect.java`
+4. Run `LoginFrame.java`
 
----
-
-## ⚙️ Workflow
-
-1. **Login**: Student logs into the system
-2. **Browse Courses**: UI displays available courses
-3. **Register**: User selects desired courses
-4. **Validation**: App checks for constraints (duplicate, full capacity, etc.)
-5. **Database Update**: DAO classes interact with MySQL via JDBC
-6. **Feedback**: Success/failure messages shown in UI
-
----
-
-## 🎯 Expected Results
-
-- A robust and intuitive course registration system  
-- Secure student logins and admin access  
-- Real-time database operations with confirmation messages  
-- Input validation and error handling  
-- Modular, well-documented codebase for easy maintenance
-
----
-
-## 📦 Deployment Requirements
-
-- Java 8+
-- MySQL Server (XAMPP or standalone)
-- JDBC Driver
-- Java-compatible IDE (NetBeans preferred)
-
----
-
-## 🧑‍💻 Developed By
-
-**Niharika Swain**  
-*Academic Project Submission*
-
-> _This application reflects a modular design pattern, clean user experience, and robust backend integration to simulate a real-world academic enrollment system._
+## 👨‍💻 Author
+Niharka Swain
