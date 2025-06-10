@@ -1,41 +1,31 @@
-package com.harsh.registration;
-
-
-import com.harsh.registration.model.Student;
-import com.harsh.registration.db.DBConnection;
-
 import java.sql.*;
-import java.util.*;
 
-public class StudentDAO {
+public class DAO {
 
-    public void addStudent(Student student) throws SQLException {
-        Connection conn = DBConnection.getConnection();
-        String query = "INSERT INTO students (name, email, department) VALUES (?, ?, ?)";
-        PreparedStatement ps = conn.prepareStatement(query);
-        ps.setString(1, student.getName());
-        ps.setString(2, student.getEmail());
-        ps.setString(3, student.getDepartment());
-        ps.executeUpdate();
-        conn.close();
+    public static boolean validateLogin(String username, String password) {
+        try (Connection con = Connect.getConnection()) {
+            String query = "SELECT * FROM users WHERE username=? AND password=?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            ResultSet rs = pst.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println("Login error: " + e.getMessage());
+            return false;
+        }
     }
 
-    public List<Student> getAllStudents() throws SQLException {
-        List<Student> list = new ArrayList<>();
-        Connection conn = DBConnection.getConnection();
-        String query = "SELECT * FROM students";
-        Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery(query);
-        while (rs.next()) {
-            Student s = new Student(
-                    rs.getInt("student_id"),
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("department")
-            );
-            list.add(s);
+    public static boolean registerCourse(ModelClass m) {
+        try (Connection con = Connect.getConnection()) {
+            String query = "INSERT INTO registrations(username, course) VALUES(?, ?)";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, m.getUsername());
+            pst.setString(2, m.getCourse());
+            return pst.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Registration error: " + e.getMessage());
+            return false;
         }
-        conn.close();
-        return list;
     }
 }

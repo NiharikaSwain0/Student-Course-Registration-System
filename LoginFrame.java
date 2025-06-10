@@ -1,39 +1,55 @@
 import javax.swing.*;
-import java.awt.event.*;
+
 
 public class LoginFrame extends JFrame {
-    private JTextField usernameField;
-    private JPasswordField passwordField;
-
     public LoginFrame() {
         setTitle("Student Login");
-        setSize(300, 150);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setSize(300, 200);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(null);
 
-        JPanel panel = new JPanel();
-        usernameField = new JTextField(15);
-        passwordField = new JPasswordField(15);
+        JLabel l1 = new JLabel("Username:");
+        l1.setBounds(30, 30, 80, 25);
+        add(l1);
 
-        panel.add(new JLabel("Username:"));
-        panel.add(usernameField);
-        panel.add(new JLabel("Password:"));
-        panel.add(passwordField);
+        JTextField tf1 = new JTextField();
+        tf1.setBounds(120, 30, 120, 25);
+        add(tf1);
+
+        JLabel l2 = new JLabel("Password:");
+        l2.setBounds(30, 70, 80, 25);
+        add(l2);
+
+        JPasswordField pf = new JPasswordField();
+        pf.setBounds(120, 70, 120, 25);
+        add(pf);
 
         JButton loginBtn = new JButton("Login");
-        panel.add(loginBtn);
+        loginBtn.setBounds(90, 110, 100, 30);
+        add(loginBtn);
 
         loginBtn.addActionListener(e -> {
-            String username = usernameField.getText();
-            String password = new String(passwordField.getPassword());
-            // Validate user using database
-            JOptionPane.showMessageDialog(this, "Login clicked for " + username);
+            String username = tf1.getText();
+            String password = new String(pf.getPassword());
+
+            if (username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter all fields.");
+                return;
+            }
+
+            if (DAO.validateLogin(username, password)) {
+                JOptionPane.showMessageDialog(this, "Login Successful");
+                new RegisterCourseFrame(username).setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Credentials");
+            }
         });
 
-        add(panel);
+        setVisible(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
+        new LoginFrame();
     }
 }

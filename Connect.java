@@ -1,15 +1,10 @@
-package com.harsh.registration.db;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/registration_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "mypassword"; // replace this
-
+public class Connect {
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        String url = "jdbc:mysql://localhost:3306/student_system";
+        String user = "root";
+        String password = "Harsh1112004@"; // Change this!
+        return DriverManager.getConnection(url, user, password);
     }
 }
